@@ -1,7 +1,7 @@
 Summary: vncterm tty to vnc utility
 Name: vncterm
 Version: 10.0.0
-Release: 1
+Release: 1%{dist}
 License: GPL
 Group: System/Hypervisor
 Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/%{name}/archive?at=v%{version}&format=tar.gz&prefix=%{name}-%{version}#/%{name}-%{version}.tar.gz
