@@ -1,14 +1,14 @@
 Summary: vncterm tty to vnc utility
 Name: vncterm
-Version: 10.1.0
+Version: 10.2.0
 Release: 1%{?dist}
 License: GPL
 Group: System/Hypervisor
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.1.0&format=tar.gz&prefix=vncterm-10.1.0#/vncterm-10.1.0.tar.gz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.2.0&format=tar.gz&prefix=vncterm-10.2.0#/vncterm-10.2.0.tar.gz
 
 
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.1.0&format=tar.gz&prefix=vncterm-10.1.0#/vncterm-10.1.0.tar.gz) = 457ccaf07dee51d75983c020f9ef3531c8b51878
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.2.0&format=tar.gz&prefix=vncterm-10.2.0#/vncterm-10.2.0.tar.gz) = df1d2807ce3d5d287a14167612ce5cc9202a138b
 
 BuildRequires: xen-libs-devel systemd
 BuildRequires: gcc
@@ -73,6 +73,11 @@ grep -xq 'pts/0' /etc/securetty || echo 'pts/0' >>/etc/securetty
 %dir %{_var}/xen/%{name}
 
 %changelog
+* Wed Mar 27 2019 Ross Lagerwall <ross.lagerwall@citrix.com> - 10.2.0-1
+- Use xenstored.service rather than socket
+- Specify coredump limit in unit rather than wrapper script
+- CA-308916: Remove special coredump handling
+
 * Fri Jan 18 2019 Edwin Török <edvin.torok@citrix.com> - 10.1.0-1
 - CA-308198: qemu-trad was dropped, update vncterm to use keymaps from upstream qemu instead
 
