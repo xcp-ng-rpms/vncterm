@@ -1,7 +1,7 @@
 Summary: vncterm tty to vnc utility
 Name: vncterm
 Version: 10.2.0
-Release: 1
+Release: 2
 License: GPL
 Group: System/Hypervisor
 
@@ -11,6 +11,7 @@ Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/
 Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.2.0&format=tar.gz&prefix=vncterm-10.2.0#/vncterm-10.2.0.tar.gz) = df1d2807ce3d5d287a14167612ce5cc9202a138b
 
 BuildRequires: xen-libs-devel systemd
+%{?_cov_buildrequires}
 Requires: qemu
 Requires(pre): shadow-utils
 Requires(post): systemd
@@ -22,9 +23,10 @@ This package contains the vncterm utility
 
 %prep
 %autosetup -p1
+%{?_cov_prepare}
 
 %build
-%{?cov_wrap} %{__make}
+%{?_cov_wrap} %{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -36,6 +38,7 @@ This package contains the vncterm utility
 %{__install} -m 755 dom0term/%{name}-wrapper %{buildroot}/opt/xensource/libexec
 %{__install} -m 644 dom0term/dom0term.service %{buildroot}%{_unitdir}
 %{__install} -d %{buildroot}%{_var}/xen/%{name}
+%{?_cov_install}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -71,7 +74,12 @@ grep -xq 'pts/0' /etc/securetty || echo 'pts/0' >>/etc/securetty
 %{_unitdir}/dom0term.service
 %dir %{_var}/xen/%{name}
 
+%{?_cov_results_package}
+
 %changelog
+* Fri Feb 21 2020 Steven Woods <steven.woods@citrix.com> - 10.2.0-2
+- CP33120: Add Coverity build macros
+
 * Wed Mar 27 2019 Ross Lagerwall <ross.lagerwall@citrix.com> - 10.2.0-1
 - Use xenstored.service rather than socket
 - Specify coredump limit in unit rather than wrapper script
