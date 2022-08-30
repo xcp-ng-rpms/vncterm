@@ -1,15 +1,12 @@
+%global package_speccommit 25330fad67abac558f79483e2510b06c15f8c000
+%global package_srccommit v10.2.0
 Summary: vncterm tty to vnc utility
 Name: vncterm
 Version: 10.2.0
-Release: 2
+Release: 3%{?xsrel}%{?dist}
 License: GPL
 Group: System/Hypervisor
-
-Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.2.0&format=tar.gz&prefix=vncterm-10.2.0#/vncterm-10.2.0.tar.gz
-
-
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/vncterm/archive?at=v10.2.0&format=tar.gz&prefix=vncterm-10.2.0#/vncterm-10.2.0.tar.gz) = df1d2807ce3d5d287a14167612ce5cc9202a138b
-
+Source0: vncterm-10.2.0.tar.gz
 BuildRequires: xen-libs-devel systemd
 %{?_cov_buildrequires}
 Requires: qemu
@@ -77,6 +74,9 @@ grep -xq 'pts/0' /etc/securetty || echo 'pts/0' >>/etc/securetty
 %{?_cov_results_package}
 
 %changelog
+* Tue Feb 15 2022 Ross Lagerwall <ross.lagerwall@citrix.com> - 10.2.0-3
+- CP-38416: Enable static analysis
+
 * Fri Feb 21 2020 Steven Woods <steven.woods@citrix.com> - 10.2.0-2
 - CP33120: Add Coverity build macros
 
