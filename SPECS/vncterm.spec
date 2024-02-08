@@ -3,7 +3,7 @@
 Summary: vncterm tty to vnc utility
 Name: vncterm
 Version: 10.2.0
-Release: 3%{?xsrel}%{?dist}
+Release: 3%{?xsrel}.0.xen417.1%{?dist}
 License: GPL
 Group: System/Hypervisor
 Source0: vncterm-10.2.0.tar.gz
@@ -75,6 +75,9 @@ grep -xq 'pts/0' /etc/securetty || echo 'pts/0' >>/etc/securetty
 %{?_cov_results_package}
 
 %changelog
+* Thu Feb 08 2024 Thierry Escande <thierry.escande@vates.tech> - 10.2.0-3.0.xen417.1
+- Rebuild for Xen 4.17 test build
+
 * Tue Feb 15 2022 Ross Lagerwall <ross.lagerwall@citrix.com> - 10.2.0-3
 - CP-38416: Enable static analysis
 
