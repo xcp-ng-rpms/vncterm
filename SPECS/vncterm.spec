@@ -1,12 +1,12 @@
-%global package_speccommit 25330fad67abac558f79483e2510b06c15f8c000
-%global package_srccommit v10.2.0
+%global package_speccommit 4d1fb918fb35107b175ed2c4c174794962208334
+%global package_srccommit v10.2.1
 Summary: vncterm tty to vnc utility
 Name: vncterm
-Version: 10.2.0
-Release: 3%{?xsrel}%{?dist}
+Version: 10.2.1
+Release: 2%{?xsrel}%{?dist}
 License: GPL
 Group: System/Hypervisor
-Source0: vncterm-10.2.0.tar.gz
+Source0: vncterm-10.2.1.tar.gz
 BuildRequires: xen-libs-devel systemd
 BuildRequires: gcc
 %{?_cov_buildrequires}
@@ -75,6 +75,12 @@ grep -xq 'pts/0' /etc/securetty || echo 'pts/0' >>/etc/securetty
 %{?_cov_results_package}
 
 %changelog
+* Fri Jan 26 2024 Andrew Cooper <andrew.cooper3@citrix.com> - 10.2.1-2
+- Rebuild against libxenstore.so.4
+
+* Thu Jun 29 2023 Per Bilse <per.bilse@citrix.com> - 10.2.1-1
+- CP-41049: Safely remove /proc/xen from dom0
+
 * Tue Feb 15 2022 Ross Lagerwall <ross.lagerwall@citrix.com> - 10.2.0-3
 - CP-38416: Enable static analysis
 
